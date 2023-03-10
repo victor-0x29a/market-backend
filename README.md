@@ -84,7 +84,7 @@
       </ol>
   </li>
   <li>
-      **Pessoas** (Clientes)
+      Pessoas (Clientes)
       <ol>
         <li>
           Pagamento com o nome (CPF);
