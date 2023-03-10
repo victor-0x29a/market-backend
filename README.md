@@ -5,19 +5,53 @@
       Produtos
       <ol>
         <li>
-          Nome
+          Nome;
         </li>
         <li>
-          BarChar
+          BarChar (Código de barras);
         </li>
         <li>
-          Estoque
+          Estoque;
         </li>
         <li>
-          Estoque em avaria
+          Estoque em avaria;
         </li>
         <li>
-          Se tem troca
+          Se tem troca;
+        </li>
+        <li>
+          Empresa responsável;
+        </li>
+      </ol>
+  </li>
+    <li>
+      Empresas (Fornecedores)
+      <ol>
+        <li>
+          Nome;
+        </li>
+        <li>
+          CNPJ;
+        </li>
+        <li>
+          Telefone;
+        </li>
+        <li>
+          Email;
+        </li>
+      </ol>
+  </li>
+  <li>
+      Pessoas (Operador de caixa)
+      <ol>
+        <li>
+          Consulta de BarChar (Código de barras);
+        </li>
+        <li>
+          Efetuar finalização de compras (Dinheiro "físico", clientes cadastrados e "cartão");
+        </li>
+        <li>
+          Iniciar com ponto;
         </li>
       </ol>
   </li>
