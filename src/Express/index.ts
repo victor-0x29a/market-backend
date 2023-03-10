@@ -1,4 +1,5 @@
 import express from "express";
+import Routes from "./Routes";
 import bodyParser from "body-parser";
 import cors from "cors";
 
@@ -9,7 +10,9 @@ class Server {
     this.Middlewares();
     this.Rotas();
   }
-  private Rotas(): void {}
+  private Rotas(): void {
+    this.app.use(Routes);
+  }
   private Middlewares(): void {
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
