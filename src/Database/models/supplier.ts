@@ -40,6 +40,6 @@ const Supplier = sequelize.define<supplierModel>("supplier", {
   },
 });
 
-Supplier.sync({ force: true });
+//Supplier.sync({ force: true });
 
 export default Supplier;

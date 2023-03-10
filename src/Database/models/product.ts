@@ -4,7 +4,7 @@ import {
   InferCreationAttributes,
   DataTypes,
 } from "sequelize";
-import productFace from "../../types/product.options";
+import { productFace } from "../../types/product.options";
 import sequelize from "../index";
 import Supplier from "./supplier";
 
@@ -46,12 +46,16 @@ const Product = sequelize.define<productModel>("product", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  price: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
 });
 
 Product.belongsTo(Supplier, {
   foreignKey: "enterprise",
 });
 
-Product.sync({ force: true });
+//Product.sync({ force: true });
 
 export default Product;

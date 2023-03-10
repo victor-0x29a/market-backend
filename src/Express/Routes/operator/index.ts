@@ -1,4 +1,5 @@
 import express from "express";
+import ConsultBarChar from "./consultBarChar";
 
 class Operator {
   Router: express.Router;
@@ -6,7 +7,9 @@ class Operator {
     this.Router = router;
     this.init();
   }
-  private init(): void {}
+  private init(): void {
+    this.Router.get("/product", ConsultBarChar);
+  }
 }
 
-export default new Operator(express.Router());
+export default new Operator(express.Router()).Router;

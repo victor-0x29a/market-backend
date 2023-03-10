@@ -1,5 +1,4 @@
 import Express, { Request, Response } from "express";
-import ReturnResponse from "../../Response";
 
 import register from "./register";
 import login from "./login";

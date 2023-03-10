@@ -1,4 +1,4 @@
-export default interface productFace {
+export interface productFace {
   id?: number;
   barchar: string;
   name: string;
@@ -6,4 +6,5 @@ export default interface productFace {
   breakdownStock: number;
   replacement: boolean;
   enterprise: number;
+  price: number;
 }
