@@ -1,5 +1,7 @@
 ## 🛒 Market
 
+</br>
+
 <ul>
   <li>
       Produtos
@@ -92,3 +94,9 @@
       </ol>
   </li>
 </ul>
+
+</br>
+
+<p>
+  O projeto em si ainda está em fase de <strong>desenvolvimento</strong>, como é um projeto próprio (solo), acredito que terminando o back-end, vou começar o front-end e vale lembrar que ainda tem <strong>muito</strong> pela frente.
+</p>
