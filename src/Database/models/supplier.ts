@@ -2,7 +2,6 @@ import {
   Model,
   InferAttributes,
   InferCreationAttributes,
-  DataType,
   DataTypes,
 } from "sequelize";
 import supplierFace from "../../types/supplier.options";
@@ -23,7 +22,7 @@ const Supplier = sequelize.define<supplierModel>("supplier", {
     primaryKey: true,
   },
   cnpj: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.CHAR(14),
     allowNull: false,
   },
   name: {
@@ -31,7 +30,7 @@ const Supplier = sequelize.define<supplierModel>("supplier", {
     allowNull: false,
   },
   phone: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER({ length: 9 }),
     allowNull: false,
   },
   email: {
