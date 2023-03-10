@@ -38,6 +38,6 @@ const User = sequelize.define<userModelAccount>("usuarios", {
   },
 });
 
-User.sync({ force: true });
+//User.sync({ force: true });
 
 export default User;

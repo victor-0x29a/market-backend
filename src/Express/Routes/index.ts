@@ -1,6 +1,7 @@
 import Express from "express";
 import authentication from "./authentication";
 import operator from "./operator";
+import admin from "./admin";
 import WebToken from "../../WebToken";
 
 class Routes {
@@ -12,6 +13,7 @@ class Routes {
   private init(): void {
     this.router.use("/auth", authentication);
     this.router.use("/operator", WebToken.blockForOperator, operator);
+    this.router.use("/admin", operator);
   }
 }
 

@@ -25,13 +25,41 @@ class TokenWeb {
         return Res.status(401).json(ReturnResponse(true, "Sem permissao"));
       jsonwebtoken.verify(token, process.env.SECRET!, (err) => {
         if (err)
-          return Res.status(503).json(
+          return Res.status(401).json(
             ReturnResponse(true, "Tente novamente mais tarde!")
           );
         Next();
       });
     } catch (e) {
-      console.log(e);
+      return Res.status(503).json(
+        ReturnResponse(true, "Tente novamente mais tarde!")
+      );
+    }
+  }
+  public blockForAdministrator(
+    Req: express.Request,
+    Res: express.Response,
+    Next: express.NextFunction
+  ) {
+    try {
+      let token: string | undefined = Req.headers["authorization"];
+      if (!token)
+        return Res.status(401).json(ReturnResponse(true, "Sem permissao"));
+      jsonwebtoken.verify(
+        token,
+        process.env.SECRET!,
+        (err, decoded: object | string | undefined) => {
+          if (err)
+            return Res.status(401).json(
+              ReturnResponse(true, "Tente novamente mais tarde!")
+            );
+          let Valores: Array<number | string> = Object.values(decoded!);
+          if (Valores[1] !== "administrador")
+            return Res.status(401).json(ReturnResponse(true, "Sem permissao"));
+          Next();
+        }
+      );
+    } catch (e) {
       return Res.status(503).json(
         ReturnResponse(true, "Tente novamente mais tarde!")
       );
