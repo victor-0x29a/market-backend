@@ -7,22 +7,22 @@
       Produtos
       <ol>
         <li>
-          Nome;
+          Nome; ✅
         </li>
         <li>
-          BarChar (Código de barras);
+          BarChar (Código de barras); ✅
         </li>
         <li>
-          Estoque;
+          Estoque; ✅
         </li>
         <li>
-          Estoque em avaria;
+          Estoque em avaria; ✅
         </li>
         <li>
-          Se tem troca;
+          Se tem troca; ✅
         </li>
         <li>
-          Empresa responsável;
+          Empresa responsável; ✅
         </li>
       </ol>
   </li>
@@ -30,16 +30,16 @@
       Empresas (Fornecedores)
       <ol>
         <li>
-          Nome;
+          Nome; ✅
         </li>
         <li>
-          CNPJ;
+          CNPJ; ✅
         </li>
         <li>
-          Telefone;
+          Telefone; ✅
         </li>
         <li>
-          Email;
+          Email; ✅
         </li>
       </ol>
   </li>
@@ -74,6 +74,12 @@
         </li>
         <li>
           Modificações de produtos;
+        </li>
+        <li>
+          Inserção de fornecedores; ✅
+        </li>
+        <li>
+          Inserção de produtos;
         </li>
       </ol>
   </li>
