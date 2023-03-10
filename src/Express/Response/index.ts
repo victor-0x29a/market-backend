@@ -1,5 +1,3 @@
-import express from "express";
-import { array, boolean, object } from "zod";
 import { ResponseApi } from "../../types/response.options";
 
 function ReturnResponse(
@@ -12,3 +10,5 @@ function ReturnResponse(
     values: data,
   };
 }
+
+export default ReturnResponse;
