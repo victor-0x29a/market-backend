@@ -10,6 +10,7 @@ export const userAccountSchema = z.object({
       z.literal("administrador"),
       z.literal("financeiro"),
       z.literal("operador"),
+      z.literal("empresa"),
     ],
     {
       required_error: "Confira seu cargo!",

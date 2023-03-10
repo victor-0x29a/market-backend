@@ -4,6 +4,7 @@ import { userAccountLoginSchema } from "../../../../Schemas/userlogin";
 import userAccount from "../../../../types/user.options";
 import User from "../../../../Database/models/user";
 import bcrypt from "bcrypt";
+import TokenWeb from "../../../../WebToken/index";
 
 export default async function login(
   req: express.Request,
@@ -33,6 +34,13 @@ export default async function login(
           );
       if (!result)
         return res.status(401).json(ReturnResponse(true, "Tente novamente"));
+
+      let jwt: boolean | string = TokenWeb.generate(user.id!, user.role);
+      if (!jwt)
+        return res
+          .status(503)
+          .json(ReturnResponse(true, "Tente novamente mais tarde!"));
+      return res.status(200).json(ReturnResponse(false, { jwt: jwt }));
     });
   } catch (e) {
     return res.status(400).json(ReturnResponse(true, "Confira seu payload."));
