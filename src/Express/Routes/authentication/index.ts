@@ -1,4 +1,8 @@
 import Express, { Request, Response } from "express";
+import ReturnResponse from "../../Response";
+
+import register from "./register";
+import login from "./login";
 
 class Auth {
   router: Express.Router;
@@ -6,11 +10,9 @@ class Auth {
     this.router = router;
     this.Routes();
   }
-  private Routes(): void {}
-
-  protected async login(req: Request, res: Response) {
-    try {
-    } catch (e) {}
+  private Routes(): void {
+    this.router.post("/register", register);
+    this.router.post("/login", login);
   }
 }
 
