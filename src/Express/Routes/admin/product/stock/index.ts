@@ -130,12 +130,6 @@ export default async function ProductStockRamAdmin(
           );
         });
     }
-    return Res.status(200).json(
-      ReturnResponse(true, {
-        Message: "So tem alguns metodos disponiveis...",
-        Metodos: ["sub", "add", "break"],
-      })
-    );
   } catch (e) {
     return Res.status(503).json(
       ReturnResponse(true, "Volte mais tarde, houve um erro...")
