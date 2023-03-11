@@ -1,5 +1,6 @@
 import express from "express";
 import ProductNewRamAdmin from "./new";
+import ProductEditRamAdmin from "./edit";
 
 class ProductRamAdmin {
   Router: express.Router;
@@ -8,7 +9,8 @@ class ProductRamAdmin {
     this.init();
   }
   private init(): void {
-    this.Router.post("/new", ProductNewRamAdmin);
+    this.Router.post("/", ProductNewRamAdmin);
+    this.Router.put("/", ProductEditRamAdmin);
   }
 }
 

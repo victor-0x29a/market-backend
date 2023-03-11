@@ -73,7 +73,7 @@
           Administração de estoque (compras com simulação de NF-E...);
         </li>
         <li>
-          Modificações de produtos;
+          Modificações de produtos; ✅
         </li>
         <li>
           Inserção de fornecedores; ✅
