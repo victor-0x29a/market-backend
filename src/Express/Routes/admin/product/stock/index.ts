@@ -7,6 +7,8 @@ import BreakDownStock from "../../../../../Database/MongoDB/collections/breakdow
 import { productFace } from "../../../../../types/product.options";
 import { decodedData } from "../../../../../types/decodedData.options";
 import jwtDecode from "jwt-decode";
+import NormalStock from "../../../../../Database/MongoDB/collections/sumStock";
+import DelStock from "../../../../../Database/MongoDB/collections/removestock";
 
 export default async function ProductStockRamAdmin(
   Req: express.Request,
@@ -32,6 +34,8 @@ export default async function ProductStockRamAdmin(
         ReturnResponse(true, "O produto nao foi encontrado, tente novamente!")
       );
     if (Req.query.method === "sub") {
+      let header: string = Req.headers["authorization"]!;
+      let user: decodedData = jwtDecode(header);
       let estoquePrevioSub: number = Produto.stock! - Number(Req.query.value);
       if (estoquePrevioSub < 0)
         return Res.status(409).json(
@@ -50,8 +54,23 @@ export default async function ProductStockRamAdmin(
           },
         }
       )
-        .then(() => {
-          return Res.status(204).json();
+        .then(async () => {
+          await DelStock.create({
+            product: Number(Req.query.id),
+            user: user.id,
+            total: Number(Req.query.value),
+          })
+            .then(() => {
+              return Res.status(204).json();
+            })
+            .catch((err) => {
+              return Res.status(200).json(
+                ReturnResponse(
+                  true,
+                  "Houve um erro no final, porem o estoque foi atualizado!"
+                )
+              );
+            });
         })
         .catch((err) => {
           return Res.status(503).json(
@@ -59,6 +78,8 @@ export default async function ProductStockRamAdmin(
           );
         });
     } else if (Req.query.method === "add") {
+      let header: string = Req.headers["authorization"]!;
+      let user: decodedData = jwtDecode(header);
       let estoquePrevioAdd: number = Produto.stock! + Number(Req.query.value);
       await Product.update(
         {
@@ -70,8 +91,23 @@ export default async function ProductStockRamAdmin(
           },
         }
       )
-        .then(() => {
-          return Res.status(204).json();
+        .then(async () => {
+          await NormalStock.create({
+            product: Number(Req.query.id),
+            user: user.id,
+            total: Number(Req.query.value),
+          })
+            .then(() => {
+              return Res.status(204).json();
+            })
+            .catch((err) => {
+              return Res.status(200).json(
+                ReturnResponse(
+                  true,
+                  "Houve um erro no final, porem o estoque foi atualizado!"
+                )
+              );
+            });
         })
         .catch((err) => {
           return Res.status(503).json(
@@ -111,6 +147,7 @@ export default async function ProductStockRamAdmin(
           await BreakDownStock.create({
             product: Number(Req.query.id),
             user: user.id,
+            total: Number(Req.query.value),
           })
             .then(() => {
               return Res.status(204).json();

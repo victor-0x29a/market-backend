@@ -11,7 +11,9 @@ class TokenWeb {
   }
   public generate(id: number, role: string): string | boolean {
     if (!id) return false;
-    let jwt = jsonwebtoken.sign({ id: id, role: role }, this.secret);
+    let jwt = jsonwebtoken.sign({ id: id, role: role }, this.secret, {
+      expiresIn: "1hr",
+    });
     return jwt;
   }
   public blockForOperator(

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const BreakDownStock = new mongoose.Schema({
+const DelStock = new mongoose.Schema({
   product: {
     type: Number,
     required: true,
@@ -19,4 +19,4 @@ const BreakDownStock = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("BreakDownStock", BreakDownStock);
+export default mongoose.model("DelStock", DelStock);
