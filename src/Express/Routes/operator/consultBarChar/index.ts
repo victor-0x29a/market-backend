@@ -23,7 +23,7 @@ export default async function ConsultBarChar(
     const Entry = ID.safeParse(Number(Req.query.id));
     if (!Entry.success)
       return Res.status(406).json(ReturnResponse(true, "Confira seu ID"));
-    let produto: consult | null = await product.findOne({
+    let produto = await product.findOne({
       where: { id: Number(Req.query.id) },
       include: [{ attributes: ["name"], model: Supplier }],
     });

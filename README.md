@@ -70,7 +70,7 @@
           Consulta de compras realizadas;
         </li>
         <li>
-          Administração de estoque (compras com simulação de NF-E...);
+          Administração de estoque; ✅
         </li>
         <li>
           Modificações de produtos; ✅

@@ -11,7 +11,7 @@ class Auth {
     this.Routes();
   }
   private Routes(): void {
-    this.router.post("/register", WebToken.blockForAdministrator, register);
+    this.router.post("/register", WebToken.blockForHigher, register);
     this.router.post("/login", login);
   }
 }

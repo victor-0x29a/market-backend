@@ -1,6 +1,5 @@
 import { Roles } from "./roles.options";
-
-export interface jwtDecoded {
+export interface decodedData {
   id: number;
   role: Roles;
 }
