@@ -1,6 +1,7 @@
 import express from "express";
 
 import EnterpriseNewRamAdmin from "./new";
+import EnterpriseEditRamAdmin from "./edit";
 
 class EnterpriseRamAdmin {
   Router: express.Router;
@@ -9,7 +10,8 @@ class EnterpriseRamAdmin {
     this.init();
   }
   private init(): void {
-    this.Router.post("/new", EnterpriseNewRamAdmin);
+    this.Router.post("/", EnterpriseNewRamAdmin);
+    this.Router.put("/", EnterpriseEditRamAdmin);
   }
 }
 
