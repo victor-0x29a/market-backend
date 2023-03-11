@@ -8,12 +8,18 @@ import { productFace } from "../../types/product.options";
 import sequelize from "../index";
 import Supplier from "./supplier";
 
+interface supplierConsult {
+  name?: string;
+}
+
 interface productModel
   extends Model<
       InferAttributes<productModel>,
       InferCreationAttributes<productModel>
     >,
-    productFace {}
+    productFace {
+  supplier?: supplierConsult;
+}
 
 const Product = sequelize.define<productModel>("product", {
   id: {
