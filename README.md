@@ -47,7 +47,7 @@
       Pessoas (Operador de caixa)
       <ol>
         <li>
-          Consulta de BarChar (Código de barras);
+          Consulta de BarChar (Código de barras); ✅
         </li>
         <li>
           Efetuar finalização de compras (Dinheiro "físico", clientes cadastrados e "cartão");
@@ -61,7 +61,7 @@
       Pessoas (Financeiro)
       <ol>
         <li>
-          Consulta de BarChar (Código de barras);
+          Consulta de BarChar (Código de barras); ✅
         </li>
         <li>
           Efetuar finalização de compras (Dinheiro "físico", clientes cadastrados e "cartão");
