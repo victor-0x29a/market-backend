@@ -15,7 +15,12 @@ export default async function login(
     if (!Body.success)
       return res
         .status(406)
-        .json(ReturnResponse(true, Body.error.errors[0].message));
+        .json(
+          ReturnResponse(
+            true,
+            `Confira o campo '${Body.error.errors[0].path[0]}'`
+          )
+        );
 
     const user: userAccount | null = await User.findOne({
       where: { firstName: req.body.firstName },

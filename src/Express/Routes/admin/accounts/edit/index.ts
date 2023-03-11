@@ -1,11 +1,11 @@
 import express from "express";
-import Supplier from "../../../../../Database/models/supplier";
-import ReturnResponse from "../../../../Response";
-import { EnterpriseNewSchema } from "../../../../../Schemas/enterprise";
-import supplierFace from "../../../../../types/supplier.options";
+import User from "../../../../../Database/models/user";
+import { userEditAccountSchema } from "../../../../../Schemas/useredit";
 import { ID } from "../../../../../Schemas/id";
+import ReturnResponse from "../../../../Response";
+import { userAccount } from "../../../../../types/user.options";
 
-export default async function EnterpriseEditRamAdmin(
+export default async function AccountEditRamAdmin(
   Req: express.Request,
   Res: express.Response
 ) {
@@ -13,7 +13,7 @@ export default async function EnterpriseEditRamAdmin(
     const id = ID.safeParse(Number(Req.query.id));
     if (!id.success)
       return Res.status(406).json(ReturnResponse(true, "Confira o ID!"));
-    const Body = EnterpriseNewSchema.safeParse(Req.body);
+    const Body = userEditAccountSchema.safeParse(Req.body);
     if (!Body.success)
       return Res.status(406).json(
         ReturnResponse(
@@ -21,21 +21,22 @@ export default async function EnterpriseEditRamAdmin(
           `Confira o campo '${Body.error.errors[0].path[0]}'`
         )
       );
-    let empresa: supplierFace | null = await Supplier.findOne({
-      where: { id: Number(Req.query.id) },
+    const usuario: userAccount | null = await User.findOne({
+      where: {
+        id: Number(Req.query.id),
+      },
     });
-    if (!empresa)
+    if (!usuario)
       return Res.status(404).json(
         ReturnResponse(
           true,
-          "Opa, confira o ID, pois a empresa nao foi identificada."
+          "Confira o ID, pois nao foi possivel encontrar o usuario!"
         )
       );
-    await Supplier.update(
+    await User.update(
       {
-        name: Req.body.name,
-        cnpj: Req.body.cnpj,
-        email: Req.body.email,
+        firstName: Req.body.firstName,
+        role: Req.body.role,
         phone: Req.body.phone,
       },
       {
@@ -47,9 +48,12 @@ export default async function EnterpriseEditRamAdmin(
       .then(() => {
         return Res.status(204).json();
       })
-      .catch(() => {
+      .catch((err) => {
         return Res.status(503).json(
-          ReturnResponse(true, "Houve um erro, tente novamente!")
+          ReturnResponse(
+            true,
+            "Houve um erro interno ao salvar, tente novamente!"
+          )
         );
       });
   } catch (e) {

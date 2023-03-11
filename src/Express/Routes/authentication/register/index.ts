@@ -13,7 +13,12 @@ export default async function register(
     if (!Body.success)
       return res
         .status(406)
-        .json(ReturnResponse(true, Body.error.errors[0].message));
+        .json(
+          ReturnResponse(
+            true,
+            `Confira o campo '${Body.error.errors[0].path[0]}'`
+          )
+        );
 
     let user: object | null = await User.findOne({
       where: { firstName: req.body.firstName },

@@ -12,7 +12,10 @@ export default async function EnterpriseNewRamAdmin(
     const Body = EnterpriseNewSchema.safeParse(Req.body);
     if (!Body.success)
       return Res.status(406).json(
-        ReturnResponse(true, Body.error.errors[0].message)
+        ReturnResponse(
+          true,
+          `Confira o campo '${Body.error.errors[0].path[0]}'`
+        )
       );
     let empresa: supplierFace | null = await Supplier.findOne({
       where: { cnpj: Number(Req.body.cnpj) },
