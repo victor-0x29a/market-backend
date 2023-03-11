@@ -36,7 +36,7 @@ class TokenWeb {
       );
     }
   }
-  public blockForAdministrator(
+  public blockForHigher(
     Req: express.Request,
     Res: express.Response,
     Next: express.NextFunction
@@ -54,7 +54,7 @@ class TokenWeb {
               ReturnResponse(true, "Tente novamente mais tarde!")
             );
           let Valores: Array<number | string> = Object.values(decoded!);
-          if (Valores[1] !== "administrador")
+          if (Valores[1] !== "administrador" && Valores[1] !== "financeiro")
             return Res.status(401).json(ReturnResponse(true, "Sem permissao"));
           Next();
         }

@@ -10,16 +10,8 @@ class Admin {
     this.init();
   }
   private init(): void {
-    this.Router.use(
-      "/product",
-      WebToken.blockForAdministrator,
-      ProductRamAdmin
-    );
-    this.Router.use(
-      "/enterprise",
-      WebToken.blockForAdministrator,
-      EnterpriseRamAdmin
-    );
+    this.Router.use("/product", WebToken.blockForHigher, ProductRamAdmin);
+    this.Router.use("/enterprise", WebToken.blockForHigher, EnterpriseRamAdmin);
   }
 }
 

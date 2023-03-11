@@ -7,3 +7,13 @@ export const ID = z
     description: "ID (Identificacao)",
   })
   .max(999999);
+
+export const Numerico = z
+  .number({
+    invalid_type_error: "Confira o valor indicado!",
+    required_error: "Requer o valor!",
+    description: "VALOR NUMERICO",
+  })
+  .max(999999);
+
+export const Method = z.string().min(2).max(8);
