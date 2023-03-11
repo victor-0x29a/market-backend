@@ -2,6 +2,7 @@ import Express from "express";
 import authentication from "./authentication";
 import operator from "./operator";
 import admin from "./admin";
+import financial from "./financial";
 import WebToken from "../../WebToken";
 
 class Routes {
@@ -14,6 +15,7 @@ class Routes {
     this.router.use("/auth", authentication);
     this.router.use("/operator", WebToken.blockForOperator, operator);
     this.router.use("/admin", WebToken.blockForHigher, admin);
+    this.router.use("/financial", financial);
   }
 }
 

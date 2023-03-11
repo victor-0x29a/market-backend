@@ -97,6 +97,32 @@
         <li>
           Pagamento com o nome (CPF);
         </li>
+        <li>
+          Dados:
+          <ol>
+            <li>
+              Nome completo (4-48); ✅
+            </li>
+            <li>
+              Idade (18-70); ✅
+            </li>
+            <li>
+              Telefone; ✅
+            </li>
+            <li>
+              CPF; ✅
+            </li>
+            <li>
+              Endereço (4-24); ✅
+            </li>
+            <li>
+              Complemento de endereço (4-24); ✅
+            </li>
+            <li>
+              Sexo (masculino, feminino ou outro); ✅
+            </li>
+          </ol>
+        </li>
       </ol>
   </li>
 </ul>

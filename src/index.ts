@@ -7,6 +7,10 @@ ConexaoMongo.then(() => {
   Express.listen(process.env.WEB_PORT, () => {
     console.log("WebService " + process.env.WEB_PORT);
   });
-}).catch((err) => {
-  console.log("Houve um erro fatal.");
-});
+})
+  .catch((err) => {
+    console.log("Houve um erro fatal.");
+  })
+  .finally(() => {
+    console.log("Houve um erro fatal.");
+  });
