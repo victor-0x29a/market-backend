@@ -79,7 +79,7 @@
           Inserção de fornecedores; ✅
         </li>
         <li>
-          Inserção de produtos;
+          Inserção de produtos; ✅
         </li>
       </ol>
   </li>
