@@ -9,6 +9,9 @@ import { userAccount } from '../../types/user.options'
 import { response } from '../../types/controller.options'
 
 const UsersController = {
+  create: async () => {
+
+  },
   edit: async (id: number, body: userAccount): Promise<response> => {
     const idValidation = ID.safeParse(id)
     if (!idValidation.success) return {
