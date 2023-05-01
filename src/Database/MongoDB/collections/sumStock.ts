@@ -16,7 +16,7 @@ const NormalStock = new mongoose.Schema({
   data: {
     type: Date,
     default: Date.now,
-  },
-});
+  }
+}, { timestamps: true });
 
 export default mongoose.model("NormalStock", NormalStock);

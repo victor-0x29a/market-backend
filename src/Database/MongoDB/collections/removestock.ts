@@ -18,5 +18,4 @@ const DelStock = new mongoose.Schema({
     default: Date.now,
   },
 });
-
 export default mongoose.model("DelStock", DelStock);

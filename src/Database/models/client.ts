@@ -10,10 +10,10 @@ import { ClienteFace } from "../../types/client.options";
 
 interface ClienteModelTemplate
   extends Model<
-      InferAttributes<ClienteModelTemplate>,
-      InferCreationAttributes<ClienteModelTemplate>
-    >,
-    ClienteFace {}
+    InferAttributes<ClienteModelTemplate>,
+    InferCreationAttributes<ClienteModelTemplate>
+  >,
+  ClienteFace { }
 
 const Cliente = sequelize.define<ClienteModelTemplate>("clients", {
   id: {
@@ -52,6 +52,6 @@ const Cliente = sequelize.define<ClienteModelTemplate>("clients", {
   },
 });
 
-Cliente.sync({ force: true });
+//Cliente.sync({ force: true });
 
 export default Cliente;

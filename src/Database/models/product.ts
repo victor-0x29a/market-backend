@@ -14,10 +14,10 @@ interface supplierConsult {
 
 interface productModel
   extends Model<
-      InferAttributes<productModel>,
-      InferCreationAttributes<productModel>
-    >,
-    productFace {
+    InferAttributes<productModel>,
+    InferCreationAttributes<productModel>
+  >,
+  productFace {
   supplier?: supplierConsult;
 }
 

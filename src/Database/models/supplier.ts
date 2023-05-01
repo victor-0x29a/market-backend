@@ -9,10 +9,10 @@ import sequelize from "../index";
 
 interface supplierModel
   extends Model<
-      InferAttributes<supplierModel>,
-      InferCreationAttributes<supplierModel>
-    >,
-    supplierFace {}
+    InferAttributes<supplierModel>,
+    InferCreationAttributes<supplierModel>
+  >,
+  supplierFace { }
 
 const Supplier = sequelize.define<supplierModel>("supplier", {
   id: {
