@@ -1,14 +1,8 @@
 import express from "express";
-import Product from "../../../../../Database/models/product";
-import { ID, Numerico } from "../../../../../Schemas/id";
-import { MethodsStock } from "../../../../../Schemas/methodsstock";
 import ReturnResponse from "../../../../Response";
-import BreakDownStock from "../../../../../Database/MongoDB/collections/breakdown";
-import { productFace } from "../../../../../types/product.options";
 import { decodedData } from "../../../../../types/decodedData.options";
 import jwtDecode from "jwt-decode";
-import NormalStock from "../../../../../Database/MongoDB/collections/sumStock";
-import DelStock from "../../../../../Database/MongoDB/collections/removestock";
+
 
 import ProductController from '../../../../../Controllers/Admin/product'
 
