@@ -63,7 +63,9 @@ const AuthenticationController = {
       });
 
   },
-  login: async (body) => { }
+  login: async (body: any) => {
+    console.log(body)
+  }
 }
 
 export default AuthenticationController
