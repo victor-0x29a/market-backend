@@ -1,5 +1,5 @@
 export interface response {
   error: boolean,
-  message: string,
+  message: any | any[],
   statusCode: number
 }

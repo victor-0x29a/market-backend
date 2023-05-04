@@ -25,6 +25,8 @@ import BreakDownStock from "../../Database/MongoDB/collections/breakdown"
 
 import { decodedData } from '../../types/decodedData.options'
 
+import { BARCHAR } from '../../Schemas/barchar'
+
 const ProductController = {
   create: async (body: productFace): Promise<response> => {
 
@@ -340,6 +342,74 @@ const ProductController = {
           statusCode: 404
         }
     }
+  },
+  get: async (method: "id" | "barchar", identifier: number): Promise<response> => {
+    switch (method) {
+      case "id":
+        const idValidation = ID.safeParse(identifier)
+
+        if (!idValidation.success) return {
+          error: true, message: "Confira o ID.",
+          statusCode: 400
+        }
+
+        const findProduct: productFace | null = await Product.findOne({
+          where: { id: identifier }, include: [
+            { model: Supplier }
+          ]
+        })
+        if (!findProduct) return {
+          error: true, message: "Produto não encontrado.",
+          statusCode: 404
+        }
+
+        return {
+          error: false, message: findProduct,
+          statusCode: 200
+        }
+
+      case "barchar":
+
+        const barcharValidation = BARCHAR.safeParse(identifier.toString())
+
+        if (!barcharValidation.success) return {
+          error: true, message: "Confira o código de barras.",
+          statusCode: 400
+        }
+        const findProductBar: productFace | null = await Product.findOne({
+          where: { barchar: identifier.toString() }, include: [
+            { model: Supplier }
+          ]
+        })
+        if (!findProductBar) return {
+          error: true, message: "Produto não encontrado.",
+          statusCode: 404
+        }
+
+        return {
+          error: false, message: findProductBar,
+          statusCode: 200
+        }
+
+      default:
+        return {
+          error: true, message: "Método de pesquisa incorreto.",
+          statusCode: 400
+        }
+    }
+  },
+  getAll: async (): Promise<response> => {
+    return await Product.findAll().then((data) => {
+      return {
+        error: false, message: data,
+        statusCode: 200
+      }
+    }).catch((err) => {
+      return {
+        error: true, message: "Houve um erro inesperado.",
+        statusCode: 500
+      }
+    })
   }
 }
 
