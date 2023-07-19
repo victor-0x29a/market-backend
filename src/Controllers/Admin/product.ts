@@ -536,7 +536,7 @@ class ProductController {
           index: "market_products",
           id: id,
           doc: {
-            stock: stock + 1,
+            stock: stock + valor,
           },
         })
           .then(() => {
@@ -558,8 +558,8 @@ class ProductController {
           index: "market_products",
           id: id,
           doc: {
-            stock: stock - 1,
-            breakdownStock: breakdownStock + 1,
+            stock: stock - valor,
+            breakdownStock: breakdownStock + valor,
           },
         })
           .then(() => {
@@ -581,8 +581,8 @@ class ProductController {
           index: "market_products",
           id: id,
           doc: {
-            stock: stock - 1,
-            breakdownStock: breakdownStock + 1,
+            stock: stock - valor,
+            breakdownStock: breakdownStock + valor,
           },
         })
           .then(() => {
