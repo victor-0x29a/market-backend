@@ -2,12 +2,14 @@ import { ResponseApi } from "../../types/response.options";
 
 function ReturnResponse(
   error: boolean,
-  data: string | object | Array<Object> | Array<string> | Array<number>
+  message: string,
+  data?: string | object | Array<Object> | Array<string> | Array<number> | null
 ): ResponseApi {
   return {
     name: "Market",
     error: error,
-    values: data,
+    message: message,
+    data: data ? data : null,
   };
 }
 

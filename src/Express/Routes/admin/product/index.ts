@@ -2,6 +2,8 @@ import express from "express";
 import ProductNewRamAdmin from "./new";
 import ProductEditRamAdmin from "./edit";
 import ProductStockRamAdmin from "./stock";
+import ProductGet from "./get";
+import ProductGetAll from "./getAll";
 
 class ProductRamAdmin {
   Router: express.Router;
@@ -13,6 +15,8 @@ class ProductRamAdmin {
     this.Router.post("/", ProductNewRamAdmin);
     this.Router.put("/", ProductEditRamAdmin);
     this.Router.patch("/stock", ProductStockRamAdmin);
+    this.Router.get("/unique", ProductGet);
+    this.Router.get("/", ProductGetAll);
   }
 }
 

@@ -1,5 +1,6 @@
 export interface ResponseApi {
   name: string;
   error: boolean;
-  values: Object;
+  data?: any;
+  message: string;
 }

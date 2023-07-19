@@ -2,15 +2,13 @@ import supplierFace from "../../types/supplier.options";
 
 import { EnterpriseNewSchema } from "../../Schemas/enterprise";
 
-import Supplier from "../../Database/models/supplier";
-
 import { response } from "../../types/controller.options";
 
 import { ID } from "../../Schemas/id";
 
 import Elastic from "../../Elastic";
 
-import UUID, { v4 } from "uuid";
+import { v4 } from "uuid";
 
 /*
 const EnterpriseController = {

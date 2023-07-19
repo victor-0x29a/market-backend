@@ -35,4 +35,34 @@ export default [
       },
     },
   },
+  {
+    name: "market_products",
+    settings: {
+      mappings: {
+        properties: {
+          barchar: {
+            type: "keyword",
+          },
+          name: {
+            type: "keyword",
+          },
+          stock: {
+            type: "integer",
+          },
+          breakdownStock: {
+            type: "integer",
+          },
+          hasReplacement: {
+            type: "boolean",
+          },
+          enterprise: {
+            type: "keyword",
+          },
+          price: {
+            type: "float",
+          },
+        },
+      },
+    },
+  },
 ];

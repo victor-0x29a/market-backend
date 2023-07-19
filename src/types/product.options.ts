@@ -1,12 +1,10 @@
-
-
 export interface productFace {
-  id?: number;
+  id?: string;
   barchar: string;
   name: string;
   stock?: number;
   breakdownStock?: number;
-  replacement: boolean;
+  hasReplacement: boolean;
   enterprise: number;
   price: number;
 }
