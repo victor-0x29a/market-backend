@@ -146,8 +146,8 @@ class EnterpriseController {
       const UUIDGENERATED = v4();
       return await Elastic.Client.index({
         index: "market_companies",
+        id: UUIDGENERATED,
         document: {
-          id: UUIDGENERATED,
           name: body.name,
           cnpj: body.cnpj,
           phone: body.phone,
@@ -179,67 +179,76 @@ class EnterpriseController {
     }
   }
   public async Update(id: string, body: supplierFace) {
-    const idValidation = ID.safeParse(id);
+    try {
+      const idValidation = ID.safeParse(id);
 
-    if (!idValidation.success)
-      return {
-        error: true,
-        message: "Confira o ID!",
-        statusCode: 406,
-      };
-
-    const bodyValidation = EnterpriseNewSchema.safeParse(body);
-
-    if (!bodyValidation.success)
-      return {
-        error: true,
-        message: `Confira o campo ${bodyValidation.error.errors[0].path[0]}`,
-        statusCode: 406,
-      };
-
-    const CompanySearch = await Elastic.Client.search({
-      index: "market_companies",
-      size: 1,
-      query: {
-        match: {
-          cnpj: body.cnpj,
-        },
-      },
-    });
-
-    // If exists any company with equals cnpj
-    if (CompanySearch.hits.hits.length < 1) {
-      return {
-        error: true,
-        message: `Não existe nenhum fornecedor com esse ID!`,
-        statusCode: 409,
-      };
-    }
-
-    return await Elastic.Client.update({
-      index: "market_companies",
-      id: id,
-      doc: {
-        name: body.name,
-        cnpj: body.cnpj,
-        email: body.email,
-        phone: body.phone,
-      },
-    })
-      .then(() => {
-        return {
-          error: false,
-          message: `Fornecedor atualizado!`,
-          statusCode: 204,
-        };
-      })
-      .catch((err: Error) => {
+      if (!idValidation.success)
         return {
           error: true,
-          message: `Houve um erro, confira os dados enviados!`,
-          statusCode: 400,
+          message: "Confira o ID!",
+          statusCode: 406,
         };
+
+      const bodyValidation = EnterpriseNewSchema.safeParse(body);
+
+      if (!bodyValidation.success)
+        return {
+          error: true,
+          message: `Confira o campo ${bodyValidation.error.errors[0].path[0]}`,
+          statusCode: 406,
+        };
+
+      const CompanySearch = await Elastic.Client.search({
+        index: "market_companies",
+        size: 1,
+        query: {
+          match: {
+            _id: id,
+          },
+        },
       });
+
+      // If exists any company with equals cnpj
+      if (CompanySearch.hits.hits.length < 1) {
+        return {
+          error: true,
+          message: `Não existe nenhum fornecedor com esse ID!`,
+          statusCode: 409,
+        };
+      }
+
+      return await Elastic.Client.update({
+        index: "market_companies",
+        id: id,
+        doc: {
+          name: body.name,
+          cnpj: body.cnpj,
+          email: body.email,
+          phone: body.phone,
+        },
+      })
+        .then(() => {
+          return {
+            error: false,
+            message: `Fornecedor atualizado!`,
+            statusCode: 204,
+          };
+        })
+        .catch((err: Error) => {
+          console.log(err);
+          return {
+            error: true,
+            message: `Houve um erro, confira os dados enviados!`,
+            statusCode: 400,
+          };
+        });
+    } catch (e) {
+      return {
+        error: true,
+        message: `Houve um erro interno.`,
+        statusCode: 500,
+      };
+    }
   }
 }
 

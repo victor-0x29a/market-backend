@@ -21,7 +21,7 @@ export default [
             },
           },
           phone: {
-            type: "integer",
+            type: "keyword",
           },
           email: {
             type: "text",
