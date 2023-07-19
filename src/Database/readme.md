@@ -1,1 +1,2 @@
-#### O banco principal é o MySql, utilizei o MongoDB para poder gravar logs e registros pequenos.
+## MySql
+Usado para registro de usuários como funcionários e clientes.
