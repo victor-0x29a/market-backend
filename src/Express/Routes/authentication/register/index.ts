@@ -4,19 +4,17 @@ import { userAccountSchema } from "../../../../Schemas/user";
 import User from "../../../../Database/models/user";
 import bcrypt from "bcrypt";
 
-import AuthenticationController from '../../../../Controllers/Auth'
+import AuthenticationController from "../../../../Controllers/Auth";
 
 export default async function register(
   req: express.Request,
   res: express.Response
 ) {
   try {
-    await AuthenticationController.register(req.body).then((data) => {
-      return res.status(data.statusCode).json(ReturnResponse(data.error, data.message))
-    }).catch((err) => {
-      return res.status(err.statusCode).json(ReturnResponse(err.error, err.message))
-    })
-
+    const Service = await AuthenticationController.register(req.body);
+    return res
+      .status(Service.statusCode)
+      .json(ReturnResponse(Service.error, Service.message, Service.data));
   } catch (e) {
     return res.status(400).json(ReturnResponse(true, "Confira seu payload."));
   }

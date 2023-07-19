@@ -45,7 +45,9 @@ export default async function login(
         return res
           .status(503)
           .json(ReturnResponse(true, "Tente novamente mais tarde!"));
-      return res.status(200).json(ReturnResponse(false, { jwt: jwt }));
+      return res
+        .status(200)
+        .json(ReturnResponse(false, "Bem-vindo!", { jwt: jwt }));
     });
   } catch (e) {
     return res.status(400).json(ReturnResponse(true, "Confira seu payload."));

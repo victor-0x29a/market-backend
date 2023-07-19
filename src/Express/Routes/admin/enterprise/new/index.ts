@@ -9,17 +9,11 @@ export default async function EnterpriseNewRamAdmin(
   Res: express.Response
 ) {
   try {
-    await EnterpriseController.Create(Req.body)
-      .then((data) => {
-        return Res.status(data.statusCode).json(
-          ReturnResponse(data.error, data.message)
-        );
-      })
-      .catch((err) => {
-        return Res.status(err.statusCode).json(
-          ReturnResponse(err.error, err.message)
-        );
-      });
+    const Service = await EnterpriseController.Create(Req.body);
+
+    return Res.status(Service.statusCode).json(
+      ReturnResponse(Service.error, Service.message)
+    );
   } catch (e) {
     console.log(e);
     return Res.status(503).json(

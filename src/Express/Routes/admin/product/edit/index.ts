@@ -7,17 +7,10 @@ export default async function ProductEditRamAdmin(
   Res: express.Response
 ) {
   try {
-    await ProductController.Update(Req.body)
-      .then((data) => {
-        return Res.status(data.statusCode).json(
-          ReturnResponse(data.error, data.message)
-        );
-      })
-      .catch((err) => {
-        return Res.status(err.statusCode).json(
-          ReturnResponse(err.error, err.message)
-        );
-      });
+    const Service = await ProductController.Update(Req.body);
+    return Res.status(Service.statusCode).json(
+      ReturnResponse(Service.error, Service.message)
+    );
   } catch (e) {
     return Res.status(503).json(
       ReturnResponse(true, "Volte mais tarde, houve um erro interno!")

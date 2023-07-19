@@ -9,17 +9,10 @@ export default async function ProductGetAll(
   try {
     const From = Number(Req.query!.from);
 
-    await ProductController.GetAll(From)
-      .then((data) => {
-        return Res.status(data.statusCode).json(
-          ReturnResponse(data.error, data.message, data.data)
-        );
-      })
-      .catch((err) => {
-        return Res.status(err.statusCode).json(
-          ReturnResponse(err.error, err.message)
-        );
-      });
+    const Service = await ProductController.GetAll(From);
+    return Res.status(Service.statusCode).json(
+      ReturnResponse(Service.error, Service.message, Service.data)
+    );
   } catch (e) {
     return Res.status(503).json(
       ReturnResponse(true, "Tente novamente mais tarde.")
