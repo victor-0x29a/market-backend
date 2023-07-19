@@ -139,12 +139,12 @@
 
 <ul>
   <li>
-    <strong>NodeJS</strong> (Express, Sequelize, JsonWebToken, Mongoose, zod, sucrase, bcrypt);
+    <strong>NodeJS</strong> (Express, Sequelize, JsonWebToken, zod, sucrase, bcrypt);
   </li>
   <li>
     <strong>MySQL</strong>;
   </li>
   <li>
-    <strong>MongoDB</strong>;
+    <strong>Elastic Search</strong>;
   </li>
 </ul>
