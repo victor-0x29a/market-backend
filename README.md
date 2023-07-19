@@ -142,7 +142,7 @@
     <strong>NodeJS</strong> (Express, Sequelize, JsonWebToken, zod, sucrase, bcrypt);
   </li>
   <li>
-    Docker
+    <strong>Docker</strong>
   </li>
   <li>
     <strong>MySQL</strong>;
