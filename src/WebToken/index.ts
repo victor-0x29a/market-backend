@@ -24,7 +24,9 @@ class TokenWeb {
     try {
       let token: string | undefined = Req.headers["authorization"];
       if (!token)
-        return Res.status(401).json(ReturnResponse(true, "Sem permissao"));
+        return Res.status(401).json(
+          ReturnResponse(true, "Tente novamente mais tarde!")
+        );
       jsonwebtoken.verify(token, process.env.SECRET!, (err) => {
         if (err)
           return Res.status(401).json(
@@ -46,7 +48,9 @@ class TokenWeb {
     try {
       let token: string | undefined = Req.headers["authorization"];
       if (!token)
-        return Res.status(401).json(ReturnResponse(true, "Sem permissao"));
+        return Res.status(401).json(
+          ReturnResponse(true, "Tente novamente mais tarde!")
+        );
       jsonwebtoken.verify(
         token,
         process.env.SECRET!,
@@ -75,7 +79,9 @@ class TokenWeb {
     try {
       let token: string | undefined = Req.headers["authorization"];
       if (!token)
-        return Res.status(401).json(ReturnResponse(true, "Sem permissao"));
+        return Res.status(401).json(
+          ReturnResponse(true, "Tente novamente mais tarde!")
+        );
       jsonwebtoken.verify(
         token,
         process.env.SECRET!,
@@ -86,7 +92,9 @@ class TokenWeb {
             );
           let Valores: Array<number | string> = Object.values(decoded!);
           if (Valores[1] !== "administrador")
-            return Res.status(401).json(ReturnResponse(true, "Sem permissao"));
+            return Res.status(401).json(
+              ReturnResponse(true, "Tente novamente mais tarde!")
+            );
           Next();
         }
       );
