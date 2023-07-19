@@ -52,6 +52,6 @@ const Cliente = sequelize.define<ClienteModelTemplate>("clients", {
   },
 });
 
-//Cliente.sync({ force: true });
+Cliente.sync({ force: true });
 
 export default Cliente;
