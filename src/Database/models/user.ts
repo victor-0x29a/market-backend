@@ -8,10 +8,10 @@ import userAccount from "../../types/user.options";
 
 interface userModelAccount
   extends Model<
-    InferAttributes<userModelAccount>,
-    InferCreationAttributes<userModelAccount>
-  >,
-  userAccount { }
+      InferAttributes<userModelAccount>,
+      InferCreationAttributes<userModelAccount>
+    >,
+    userAccount {}
 
 const User = sequelize.define<userModelAccount>("usuarios", {
   id: {
