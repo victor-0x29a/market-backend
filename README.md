@@ -1,4 +1,4 @@
-## 🛒 Market
+## 🛒 Market API
 
 </br>
 
@@ -135,7 +135,7 @@
 
 </br>
 
-### Framework & SGBDs
+### Tecnologias utilizadas
 
 <ul>
   <li>
@@ -151,3 +151,11 @@
     <strong>Elastic Stack</strong>;
   </li>
 </ul>
+
+### Por quê o [Elastic Stack](https://www.elastic.co)?
+
+Pensando na longevidade da API em situações reais, estou usando o [Elastic](https://www.elastic.co/) para além de armazenar logs, armazenar informações de fornecedores e produtos, pois o [Elastic Search](https://www.elastic.co) consegue lidar com uma grande quantidade de dados. Tive essa conclusão após ter experiências com o software ["Intersolid"](https://intersolid.com.br/), que é um E.R.P voltado para supermercados, e ver que a realidade é meio diferente de um cenário mesmo que "bem imaginado" ao tentar impor um banco de dados "comum"...
+
+Com isso, além de logs e armazenamento, vamos falar um pouco sobre o [Kibana](https://www.elastic.co/kibana) e [Logstash](https://www.elastic.co/logstash). Com o [Kibana](https://www.elastic.co/kibana), vamos poder ter a visualização de praticamente tudo que estará ocorrendo em nossa aplicação, como por exemplo, erros de nossos "funcionários" na área de frente de caixa e vamos imaginar a seguinte situação: Temos exatamente quatro pacotes de arroz registrados no estoque (não na área de vendas). Assim, um cliente foi, comprou todos os pacotes disponíveis na área de venda e mais um do estoque e quando se dirigiu ao caixa, a "nossa funcionária" passou além dos produtos da área de vendas, mais cinco (5) produtos do estoque, sendo que só havia quatro (4) produtos no estoque. Assim, um erro foi identificado e registrado pelo [Logstash](https://www.elastic.co/logstash)!
+
+Vale lembrar que **não é somente** para isso e podemos utilizar de diversas outras formas.

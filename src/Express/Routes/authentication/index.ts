@@ -1,6 +1,4 @@
-import Express, { Request, Response } from "express";
-
-import register from "./register";
+import Express from "express";
 import login from "./login";
 import WebToken from "../../../WebToken";
 
@@ -11,7 +9,6 @@ class Auth {
     this.Routes();
   }
   private Routes(): void {
-    this.router.post("/register", register);
     this.router.post("/login", login);
   }
 }

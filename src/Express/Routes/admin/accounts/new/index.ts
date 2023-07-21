@@ -1,10 +1,6 @@
-import ReturnResponse from "../../../Response";
+import ReturnResponse from "../../../../Response";
 import express from "express";
-import { userAccountSchema } from "../../../../Schemas/user";
-import User from "../../../../Database/models/user";
-import bcrypt from "bcrypt";
-
-import AuthenticationController from "../../../../Controllers/Auth";
+import AuthenticationController from "../../../../../Controllers/Auth";
 
 export default async function register(
   req: express.Request,

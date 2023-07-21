@@ -1,4 +1,5 @@
 import express from "express";
+import AccountNewRamAdmin from "./new";
 import AccountEditRamAdmin from "./edit";
 import WebToken from "../../../../WebToken";
 
@@ -10,6 +11,7 @@ class AccountRamAdmin {
   }
   private init(): void {
     this.Router.put("/", WebToken.blockForAdmin, AccountEditRamAdmin);
+    this.Router.post("/", WebToken.blockForAdmin, AccountNewRamAdmin);
   }
 }
 
