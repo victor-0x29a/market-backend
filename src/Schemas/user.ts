@@ -1,10 +1,13 @@
 import { z } from "zod";
 
 export const userAccountSchema = z.object({
-  firstName: z.string({
-    invalid_type_error: "Confira seu nome...",
-    required_error: "Confira seu nome!",
-  }),
+  firstName: z
+    .string({
+      invalid_type_error: "Confira seu nome...",
+      required_error: "Confira seu nome!",
+    })
+    .min(4)
+    .max(18),
   role: z.union(
     [
       z.literal("administrador"),

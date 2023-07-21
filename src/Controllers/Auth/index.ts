@@ -47,7 +47,7 @@ const AuthenticationController = {
     })
       .then(() => {
         return {
-          error: true,
+          error: false,
           message: `Usuário cadastrado.`,
           statusCode: 201,
         };
@@ -80,7 +80,13 @@ const AuthenticationController = {
         statusCode: 400,
       };
     return Bcrypt.compare(body.password, user.password)
-      .then(() => {
+      .then((err) => {
+        if (err)
+          return {
+            error: true,
+            message: `Credenciais inválidas.`,
+            statusCode: 400,
+          };
         let jwt: boolean | string = TokenWeb.generate(user.id!, user.role);
         if (!jwt)
           return {
