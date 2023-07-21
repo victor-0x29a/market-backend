@@ -4,11 +4,13 @@ import { EnterpriseNewSchema } from "../../Schemas/enterprise";
 
 import { response } from "../../types/controller.options";
 
-import { ID } from "../../Schemas/id";
+import { ID, Numerico } from "../../Schemas/id";
 
 import Elastic from "../../Elastic";
 
 import { v4 } from "uuid";
+
+import { estypes } from "@elastic/elasticsearch";
 
 /*
 const EnterpriseController = {
@@ -176,7 +178,7 @@ class EnterpriseController {
       };
     }
   }
-  public async Update(id: string, body: supplierFace) {
+  public async Update(id: string, body: supplierFace): Promise<response> {
     try {
       const idValidation = ID.safeParse(id);
 
@@ -244,6 +246,68 @@ class EnterpriseController {
       return {
         error: true,
         message: `Houve um erro interno.`,
+        statusCode: 500,
+      };
+    }
+  }
+  public async Get(cnpj: number): Promise<response> {
+    try {
+      const Fetched = await Elastic.Client.search({
+        index: "market_companies",
+        size: 1,
+        query: {
+          match: {
+            cnpj: cnpj,
+          },
+        },
+      });
+      const Data: estypes.SearchHit[] = Fetched.hits.hits;
+      if (Data.length < 1)
+        return {
+          error: true,
+          message: "Empresa não encontrada.",
+          statusCode: 404,
+        };
+      const Company = Data[0]._source as supplierFace;
+
+      return {
+        error: false,
+        message: `Empresa #${Company.cnpj}`,
+        statusCode: 200,
+        data: Company,
+      };
+    } catch {
+      return {
+        error: true,
+        message: "Houve um erro interno.",
+        statusCode: 500,
+      };
+    }
+  }
+  public async GetAll(From: number): Promise<response> {
+    try {
+      const FromValidation = await Numerico.safeParseAsync(From);
+      if (!FromValidation.success)
+        return {
+          error: true,
+          message: `Confira o parâmetro "from"...`,
+          statusCode: 406,
+        };
+      const Fetched = await Elastic.Client.search({
+        index: "market_companies",
+        size: 100,
+        from: From,
+      });
+      return {
+        error: false,
+        statusCode: 200,
+        message: "Todas as empresas.",
+        data: Fetched.hits.hits,
+      };
+    } catch (e) {
+      return {
+        error: true,
+        message: "Houve um erro interno.",
         statusCode: 500,
       };
     }

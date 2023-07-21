@@ -4,15 +4,19 @@ import ReturnResponse from "../../../../Response";
 
 import EnterpriseController from "../../../../../Controllers/Admin/enterprises";
 
-export default async function EnterpriseNewRamAdmin(
+export default async function EnterpriseGetAllAdmin(
   Req: express.Request,
   Res: express.Response
 ) {
   try {
-    const Service = await EnterpriseController.Create(Req.body);
+    if (!Req.query.from)
+      return Res.status(406).json(
+        ReturnResponse(true, `Confira o campo "from"...`, null)
+      );
+    const Service = await EnterpriseController.GetAll(Number(Req.query.from!));
 
     return Res.status(Service.statusCode).json(
-      ReturnResponse(Service.error, Service.message, null)
+      ReturnResponse(Service.error, Service.message, Service.data)
     );
   } catch (e) {
     return Res.status(503).json(

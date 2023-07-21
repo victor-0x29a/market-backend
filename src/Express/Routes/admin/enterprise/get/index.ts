@@ -4,15 +4,19 @@ import ReturnResponse from "../../../../Response";
 
 import EnterpriseController from "../../../../../Controllers/Admin/enterprises";
 
-export default async function EnterpriseNewRamAdmin(
+export default async function EnterpriseGetAdmin(
   Req: express.Request,
   Res: express.Response
 ) {
   try {
-    const Service = await EnterpriseController.Create(Req.body);
+    if (!Req.query.cnpj)
+      return Res.status(406).json(
+        ReturnResponse(true, "Confira o CNPJ!", null)
+      );
+    const Service = await EnterpriseController.Get(Number(Req.query.cnpj!));
 
     return Res.status(Service.statusCode).json(
-      ReturnResponse(Service.error, Service.message, null)
+      ReturnResponse(Service.error, Service.message, Service.data)
     );
   } catch (e) {
     return Res.status(503).json(

@@ -2,6 +2,8 @@ import express from "express";
 
 import EnterpriseNewRamAdmin from "./new";
 import EnterpriseEditRamAdmin from "./edit";
+import EnterpriseGetAdmin from "./get";
+import EnterpriseGetAllAdmin from "./getall";
 
 class EnterpriseRamAdmin {
   Router: express.Router;
@@ -12,6 +14,8 @@ class EnterpriseRamAdmin {
   private init(): void {
     this.Router.post("/", EnterpriseNewRamAdmin);
     this.Router.put("/", EnterpriseEditRamAdmin);
+    this.Router.get("/", EnterpriseGetAdmin);
+    this.Router.get("/all", EnterpriseGetAllAdmin);
   }
 }
 
