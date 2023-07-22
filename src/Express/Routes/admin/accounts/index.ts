@@ -1,6 +1,8 @@
 import express from "express";
 import AccountNewRamAdmin from "./new";
 import AccountEditRamAdmin from "./edit";
+import AccountGetRamAdmin from "./get";
+import AccountGetAllRamAdmin from "./getAll";
 import WebToken from "../../../../WebToken";
 
 class AccountRamAdmin {
@@ -12,6 +14,8 @@ class AccountRamAdmin {
   private init(): void {
     this.Router.put("/", WebToken.blockForAdmin, AccountEditRamAdmin);
     this.Router.post("/", WebToken.blockForAdmin, AccountNewRamAdmin);
+    this.Router.get("/", WebToken.blockForAdmin, AccountGetRamAdmin);
+    this.Router.get("/all", WebToken.blockForAdmin, AccountGetAllRamAdmin);
   }
 }
 

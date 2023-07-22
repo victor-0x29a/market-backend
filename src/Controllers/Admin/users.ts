@@ -66,6 +66,42 @@ const UsersController = {
         };
       });
   },
+  getAll: async (): Promise<response> => {
+    const Employers = await User.findAll({
+      attributes: {
+        exclude: ["password"],
+      },
+    });
+    return {
+      error: false,
+      statusCode: 200,
+      data: Employers,
+      message: "Todos os funcionários.",
+    };
+  },
+  get: async (id: number): Promise<response> => {
+    const findUser: userAccount | null = await User.findOne({
+      where: {
+        id: Number(id),
+      },
+      attributes: {
+        exclude: ["password"],
+      },
+    });
+
+    if (!findUser)
+      return {
+        error: true,
+        message: `Usuário não encontrado!`,
+        statusCode: 404,
+      };
+    return {
+      error: false,
+      message: `Funcionário #${findUser.id}`,
+      data: findUser,
+      statusCode: 200,
+    };
+  },
 };
 
 export default UsersController;
